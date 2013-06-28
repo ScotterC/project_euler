@@ -8,7 +8,6 @@ primes = []
     f2 = target / i
     factors.push(f1, f2)
     break if f1 > f2
-
   end
 end
 
