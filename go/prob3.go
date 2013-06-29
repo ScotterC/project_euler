@@ -19,8 +19,7 @@ func main() {
     if isFactor(target, i) {
       f1 := i
       f2 := target / i
-      factors = append(factors, f1)
-      factors = append(factors, f2)
+      factors = append(factors, f1, f2)
       if f1 > f2 {
         break
       }

@@ -7,7 +7,7 @@ package main
 import (
   "fmt"
   "strings"
-  "sort"
+  "strconv"
 )
 
 func main() {
@@ -16,24 +16,48 @@ func main() {
   for i := int32(900); i <= int32(999); i++ {
     for x := int32(900); x <= int32(999); x++ {
       product := x * i
-      if testPalindrome(product) {
+      if testPalindromeInt(product) {
         palindromes = append(palindromes, product)
       }
     }
   }
 
-  fmt.Printf("%d\n", palindromes)
+  largest := palindromes[0]
+  for _, v := range palindromes {
+    if v > largest {
+      largest = v
+    }
+  }
+
+  fmt.Printf("%d\n", largest)
 }
 
-func testPalindrome(arg int32) (bool) {
-  str := string(arg)
-  str_slice := strings.Split(str, "")
-  reversed_slice := str_slice.Reverse()
-  if str_slice == reversed_slice {
+func testPalindromeInt(arg int32) (bool) {
+  str := strconv.FormatInt(int64(arg), 10)
+  reversed := reverseString(str)
+
+  if str == reversed {
     return true
   }
   return false
-  // turn int into string
-  // split into slice
-  // rever slice, see if it's equal
 }
+
+func reverseString(str string) (string) {
+  str_slice := strings.Split(str, "")
+
+  length := len(str_slice)-1
+
+  for i, j := 0, length; i < j; i, j = i+1, j-1 {
+    str_slice[i] = str_slice[j]
+    str_slice[j] = str_slice[i]
+  }
+
+  str_reversed := strings.Join(str_slice, "")
+
+  return str_reversed
+}
+
+
+
+
+
