@@ -22,6 +22,7 @@ func main() {
     }
   }
 
+  // isn't there some easier way to get largest?
   largest := palindromes[0]
   for _, v := range palindromes {
     if v > largest {
@@ -47,6 +48,9 @@ func reverseString(str string) (string) {
 
   length := len(str_slice)-1
 
+  // sorting in place is easier then trying to figure
+  // out how to make a new array that can expand
+  // and doesn't seem to type convert
   for i, j := 0, length; i < j; i, j = i+1, j-1 {
     str_slice[i] = str_slice[j]
     str_slice[j] = str_slice[i]
